@@ -26,6 +26,8 @@
   <link rel="stylesheet" type="text/css" href="semantic/dist/components/icon.css">
   <link rel="stylesheet" type="text/css" href="semantic/dist/components/sidebar.css">
   <link rel="stylesheet" type="text/css" href="semantic/dist/components/transition.css">
+  <link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+
 
   <style type="text/css">
 
@@ -146,31 +148,45 @@
 	  var intervalID = window.setInterval(ChangeSubheader, 1000);
 	  var intervalIDSlow = window.setInterval(SubheaderChangeCSS, 5);
 	  var index = 0;
-	  var OptionsArray = ["Programmer","Web Developer","3D Artist","3D Printing Enthusiast","Game Developer", "VR", "AR", "Mentor", "Lifelong Learner"];	
+	  var OptionsArray = ["Programmer","Web Developer","3D Artist","3D Printing Enthusiast","Game Developer", "VR", "AR", "CAD", "Mentor"];	
 	  var changingElement = document.getElementById("changing text");
+	  var handwritingElement = document.getElementById("SubText");
 	  var fTime = 0;
+	  var isComplete = false;
+	  var substringIndex = 0;
 	  
 	  function ChangeSubheader() {
-		index++;
-		if(index >= OptionsArray.length){
-			index = 0;
+		
+		if(index >= OptionsArray.length - 1){
+			isComplete = true;
+			changingElement.innerHTML = "<s>Mentor</s>";
+		}else{
+			index++;
+			changingElement.innerHTML = OptionsArray[index];
 		}
 		fTime = 0;
-		changingElement.innerHTML = OptionsArray[index];
 	  }
 	  
 	  
 	  function SubheaderChangeCSS() {
 		fTime += 5;
-		if(fTime < 200){
-			changingElement.style.opacity = fTime / 200;
+		if(!isComplete){
+			
+			if(fTime < 200){
+				changingElement.style.opacity = fTime / 200;
+			}else{
+				changingElement.style.opacity = 500-fTime / 200;
+			}
 		}else{
-			changingElement.style.opacity = 500-fTime / 200;
+			if(fTime > 100){
+				handwritingElement.innerHTML = "Lifelong Learner".substring(0,substringIndex);
+				changingElement.style.opacity=1;
+				substringIndex++;
+				fTime = 0;
+			}
+		
+		
 		}
-		
-		
-		
-		
 	  }
 	  
 	  
@@ -236,6 +252,7 @@
 	  <h2 id="changing text" class="ui inverted header">
 	  Programmer
 	  </h2>
+	  <h2 id ="SubText" style="font-family: 'serpicoregular', Arial, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     </div>
 
   </div>
