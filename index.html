@@ -143,6 +143,37 @@
         .sidebar('attach events', '.toc.item')
       ;
 
+	  var intervalID = window.setInterval(ChangeSubheader, 1000);
+	  var intervalIDSlow = window.setInterval(SubheaderChangeCSS, 5);
+	  var index = 0;
+	  var OptionsArray = ["Programmer","Web Developer","3D Artist","3D Printing Enthusiast","Game Developer", "VR", "AR", "Mentor", "Lifelong Learner"];	
+	  var changingElement = document.getElementById("changing text");
+	  var fTime = 0;
+	  
+	  function ChangeSubheader() {
+		index++;
+		if(index >= OptionsArray.length){
+			index = 0;
+		}
+		fTime = 0;
+		changingElement.innerHTML = OptionsArray[index];
+	  }
+	  
+	  
+	  function SubheaderChangeCSS() {
+		fTime += 5;
+		if(fTime < 200){
+			changingElement.style.opacity = fTime / 200;
+		}else{
+			changingElement.style.opacity = 500-fTime / 200;
+		}
+		
+		
+		
+		
+	  }
+	  
+	  
     })
   ;
   </script>
@@ -202,7 +233,9 @@
       <h1 class="ui inverted header">
         Hi I'm Wren!
       </h1>
-     
+	  <h2 id="changing text" class="ui inverted header">
+	  Programmer
+	  </h2>
     </div>
 
   </div>
