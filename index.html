@@ -1,484 +1,634 @@
 <html>
-<head>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-	<script src="semantic/dist/semantic.min.js"></script>
-  <!-- Standard Meta -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-	
-  <!-- Site Properties -->
-  <title>Homepage - Semantic</title>
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/reset.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/site.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/container.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/grid.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/header.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/image.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/placeholder.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/menu.css">
-
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/divider.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/dropdown.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/segment.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/button.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/list.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/item.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/icon.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/sidebar.css">
-  <link rel="stylesheet" type="text/css" href="semantic/dist/components/transition.css">
-  <link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
-
-
-  <style type="text/css">
-
-    .hidden.menu {
-      display: none;
-    }
-
-    .masthead.segment {
-      min-height: 700px;
-      padding: 1em 0em;
-    }
-    .masthead .logo.item img {
-      margin-right: 1em;
-    }
-    .masthead .ui.menu .ui.button {
-      margin-left: 0.5em;
-    }
-    .masthead h1.ui.header {
-      margin-top: 3em;
-      margin-bottom: 0em;
-      font-size: 4em;
-      font-weight: normal;
-    }
-    .masthead h2 {
-      font-size: 1.7em;
-      font-weight: normal;
-    }
-
-    .ui.vertical.stripe {
-      padding: 8em 0em;
-    }
-    .ui.vertical.stripe h3 {
-      font-size: 2em;
-    }
-    .ui.vertical.stripe .button + h3,
-    .ui.vertical.stripe p + h3 {
-      margin-top: 3em;
-    }
-    .ui.vertical.stripe .floated.image {
-      clear: both;
-    }
-    .ui.vertical.stripe p {
-      font-size: 1.33em;
-    }
-    .ui.vertical.stripe .horizontal.divider {
-      margin: 3em 0em;
-    }
-
-    .quote.stripe.segment {
-      padding: 0em;
-    }
-    .quote.stripe.segment .grid .column {
-      padding-top: 5em;
-      padding-bottom: 5em;
-    }
-
-    .footer.segment {
-      padding: 5em 0em;
-    }
-
-    .secondary.pointing.menu .toc.item {
-      display: none;
-    }
-
-    @media only screen and (max-width: 700px) {
-      .ui.fixed.menu {
-        display: none !important;
-      }
-      .secondary.pointing.menu .item,
-      .secondary.pointing.menu .menu {
-        display: none;
-      }
-      .secondary.pointing.menu .toc.item {
-        display: block;
-      }
-      .masthead.segment {
-        min-height: 350px;
-      }
-      .masthead h1.ui.header {
-        font-size: 2em;
-        margin-top: 1.5em;
-      }
-      .masthead h2 {
-        margin-top: 0.5em;
-        font-size: 1.5em;
-      }
-    }
-
-
-  </style>
-
-  <script src="assets/library/jquery.min.js"></script>
-  <script src="../dist/components/visibility.js"></script>
-  <script src="../dist/components/sidebar.js"></script>
-  <script src="../dist/components/transition.js"></script>
-  <script>
-  $(document)
-    .ready(function() {
-
-      // fix menu when passed
-      $('.masthead')
-        .visibility({
-          once: false,
-          onBottomPassed: function() {
-            $('.fixed.menu').transition('fade in');
-          },
-          onBottomPassedReverse: function() {
-            $('.fixed.menu').transition('fade out');
-          }
-        })
-      ;
-
-      // create sidebar and attach to menu open
-      $('.ui.sidebar')
-        .sidebar('attach events', '.toc.item')
-      ;
-
-	  var intervalID = window.setInterval(ChangeSubheader, 1000);
-	  var intervalIDSlow = window.setInterval(SubheaderChangeCSS, 5);
-	  var index = 0;
-	  var OptionsArray = ["Programmer","Web Developer","3D Artist","3D Printing Enthusiast","Game Developer", "VR", "AR", "CAD", "Mentor"];	
-	  var changingElement = document.getElementById("changing text");
-	  var handwritingElement = document.getElementById("SubText");
-	  var fTime = 0;
-	  var isComplete = false;
-	  var substringIndex = 0;
-	  
-	  function ChangeSubheader() {
-		
-		if(index >= OptionsArray.length - 1){
-			isComplete = true;
-			changingElement.innerHTML = "<s>Mentor</s>";
-		}else{
-			index++;
-			changingElement.innerHTML = OptionsArray[index];
-		}
-		fTime = 0;
-	  }
-	  
-	  
-	  function SubheaderChangeCSS() {
-		fTime += 5;
-		if(!isComplete){
+	<head>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script src="semantic/dist/semantic.min.js"></script>
+		<!-- Standard Meta -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<!-- Site Properties -->
+		<title>Homepage - Semantic</title>
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/reset.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/site.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/semantic.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/container.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/grid.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/header.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/image.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/placeholder.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/menu.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/divider.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/dropdown.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/segment.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/button.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/list.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/item.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/icon.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/sidebar.css">
+		<link rel="stylesheet" type="text/css" href="semantic/dist/components/transition.css">
+		<link rel="stylesheet" href="stylesheet.css" type="text/css" charset="utf-8" />
+		<style type="text/css">
+			.hidden.menu {
+			display: none;
+			}
+			.masthead.segment {
+			min-height: 700px;
+			padding: 1em 0em;
+			}
+			.masthead .logo.item img {
+			margin-right: 1em;
+			}
+			.masthead .ui.menu .ui.button {
+			margin-left: 0.5em;
+			}
+			.masthead h1.ui.header {
+			margin-top: 3em;
+			margin-bottom: 0em;
+			font-size: 4em;
+			font-weight: normal;
+			}
+			.masthead h2 {
+			font-size: 1.7em;
+			font-weight: normal;
+			}
+			.ui.vertical.stripe {
+			padding: 8em 0em;
+			}
+			.ui.vertical.stripe h3 {
+			font-size: 2em;
+			}
+			.ui.vertical.stripe .button + h3,
+			.ui.vertical.stripe p + h3 {
+			margin-top: 3em;
+			}
+			.ui.vertical.stripe .floated.image {
+			clear: both;
+			}
+			.ui.vertical.stripe p {
+			font-size: 1.33em;
+			}
+			.ui.vertical.stripe .horizontal.divider {
+			margin: 3em 0em;
+			}
+			.quote.stripe.segment {
+			padding: 0em;
+			}
+			.quote.stripe.segment .grid .column {
+			padding-top: 5em;
+			padding-bottom: 5em;
+			}
+			.footer.segment {
+			padding: 5em 0em;
+			}
+			.secondary.pointing.menu .toc.item {
+			display: none;
+			}
+			h3 {
+			font-family: 'rosarioregular', Arial, sans-serif;
+			}
+			@media only screen and (max-width: 700px) {
+			.ui.fixed.menu {
+			display: none !important;
+			}
+			.secondary.pointing.menu .item,
+			.secondary.pointing.menu .menu {
+			display: none;
+			}
+			.secondary.pointing.menu .toc.item {
+			display: block;
+			}
+			.masthead.segment {
+			min-height: 350px;
+			}
+			.masthead h1.ui.header {
+			font-size: 2em;
+			margin-top: 1.5em;
+			}
+			.masthead h2 {
+			margin-top: 0.5em;
+			font-size: 1.5em;
+			}
+			}
+		</style>
+		<script src="assets/library/jquery.min.js"></script>
+		<script src="../dist/components/visibility.js"></script>
+		<script src="../dist/components/sidebar.js"></script>
+		<script src="../dist/components/transition.js"></script>
+		<script>
+			$(document)
+			  .ready(function() {
 			
-			if(fTime < 200){
-				changingElement.style.opacity = fTime / 200;
+			    // fix menu when passed
+			    $('.masthead')
+			      .visibility({
+			        once: false,
+			        onBottomPassed: function() {
+			          $('.fixed.menu').transition('fade in');
+			        },
+			        onBottomPassedReverse: function() {
+			          $('.fixed.menu').transition('fade out');
+			        }
+			      })
+			    ;
+			
+			    // create sidebar and attach to menu open
+			    $('.ui.sidebar')
+			      .sidebar('attach events', '.toc.item')
+			    ;
+			 
+			 $(".shape").hover(function(){
+			$(".shape").shape('set next side', '.second.side')
+			.shape('flip up')
+			 });
+			
+			 var intervalID = window.setInterval(ChangeSubheader, 1000);
+			 var intervalIDSlow = window.setInterval(SubheaderChangeCSS, 5);
+			 var index = 0;
+			 var OptionsArray = ["Programmer","Web Developer","3D Artist","3D Printing Enthusiast","Game Developer", "VR", "AR", "CAD", "Mentor"];	
+			 var changingElement = document.getElementById("changing text");
+			 var handwritingElement = document.getElementById("SubText");
+			 var fTime = 0;
+			 var isComplete = false;
+			 var substringIndex = 0;
+			 
+			 function ChangeSubheader() {
+			
+			if(index >= OptionsArray.length - 1){
+				isComplete = true;
+				changingElement.innerHTML = "<s>Mentor</s>";
 			}else{
-				changingElement.style.opacity = 500-fTime / 200;
+				index++;
+				changingElement.innerHTML = OptionsArray[index];
 			}
-		}else{
-			if(fTime > 100){
-				handwritingElement.innerHTML = "Lifelong Learner".substring(0,substringIndex);
-				changingElement.style.opacity=1;
-				substringIndex++;
-				fTime = 0;
+			fTime = 0;
+			 }
+			 
+			 
+			 function SubheaderChangeCSS() {
+			fTime += 5;
+			if(!isComplete){
+				
+				if(fTime < 200){
+					changingElement.style.opacity = fTime / 200;
+				}else{
+					changingElement.style.opacity = 500-fTime / 200;
+				}
+			}else{
+				if(fTime > 100){
+					handwritingElement.innerHTML = "Lifelong Learner".substring(0,substringIndex);
+					changingElement.style.opacity=1;
+					substringIndex++;
+					fTime = 0;
+				}
+			
+			
 			}
-		
-		
-		}
-	  }
-	  
-	  
-    })
-  ;
-  </script>
-</head>
-<body class="push	able">
-
-<!-- Following Menu -->
-<div class="ui large top fixed menu transition hidden">
-  <div class="ui container">
-    <a class="active item">Home</a>
-    <a class="item">Contact Me!</a>
-    <div class="right menu">
-      <div class="item">
-        <a class="ui button">Download Resume as PDF <i class="download icon"></i></a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Sidebar Menu -->
-<div class="ui vertical inverted sidebar menu left">
-  <a class="active item">Home</a>
-  <a class="item">Contact Me!</a>
-</div>
-
-
-<!-- Page Contents -->
-<div class="pusher">
-  <div class="ui inverted vertical masthead center aligned segment" style="height: 100%;background-image: url('images/testwallpaper.png');">
-
-    <div class="ui container">
-      <div class="ui large secondary inverted pointing menu" style="border-color: transparent;">
-        <a class="toc item">
-          <i class="sidebar icon"></i>
-        </a>
-        <a class="active item">Home</a>
-        <a class="item">Contact Me!</a>
-        <div class="right item">
-          <div class="item">
-			<a class="ui button">Download Resume as PDF <i class="download icon"></i></a>
-		  </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="ui text container">
-      <h1 class="ui inverted header">
-        Hi I'm Wren!
-      </h1>
-	  <h2 id="changing text" class="ui inverted header">
-	  Programmer
-	  </h2>
-	  <h2 id ="SubText" style="font-family: 'serpicoregular', Arial, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
-	  <br></br>
-	  <h3 class="ui inverted header">
-	  This is my resume website, enjoy your stay!
-	  </h3>
-    </div>
-
-  </div>
-
-  <div class="ui vertical stripe segment">
-    <div class="ui middle aligned stackable grid container">
-      <div class="row">
-        <div class="eight wide column">
-          <h3 class="ui header">Passionate About Technology</h3>
-          <p>I've spent the past two years of my life making VR and AR experiences, 3D Modeling and 3D Printing. I am extremely passionate towards the development and education of emerging technologies</p>
-          <h3 class="ui header">We Make Bananas That Can Dance</h3>
-          <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
-        </div>
-        <div class="six wide right floated column">
-          <img src="assets/images/wireframe/white-image.png" class="ui large bordered rounded image">
-        </div>
-      </div>
-      <div class="row">
-        <div class="center aligned column">
-          <a class="ui huge button">Check Them Out</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="ui vertical stripe quote segment">
-    <div class="ui equal width stackable internally celled grid">
-      <div class="center aligned row">
-        <div class="column">
-          <h3>Super Skills</h3>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				Microsoft Office
-			  </div>
+			 }
+			 
+			 
+			  })
+			;
+		</script>
+	</head>
+	<body class="push	able">
+		<!-- Following Menu -->
+		<div class="ui large top fixed menu transition hidden">
+			<div class="ui container">
+				<a class="active item">Home</a>
+				<a class="item">Contact Me!</a>
+				<div class="right menu">
+					<div class="item">
+						<a class="ui button">Download Resume <i class="file pdf icon"></i></a>
+					</div>
+				</div>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				Adobe Creative Suite
-			  </div>
+		</div>
+		<!-- Sidebar Menu -->
+		<div class="ui vertical inverted sidebar menu left">
+			<a class="active item">Home</a>
+			<a class="item">Contact Me!</a>
+		</div>
+		<!-- Page Contents -->
+		<div class="pusher">
+		<div class="ui inverted vertical masthead center aligned segment" style="height: 100%;background-image: url('images/testwallpaper.png');">
+			<div class="ui container">
+				<div class="ui large secondary inverted pointing menu" style="border-color: transparent;">
+					<a class="toc item">
+					<i class="sidebar icon"></i>
+					</a>
+					<a class="active item">Home</a>
+					<a class="item">Contact Me!</a>
+					<div class="right item">
+						<div class="item">
+							<a class="ui button">Download Resume <i class="file pdf icon"></i></a>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				3D Printing
-			  </div>
+			<div class="ui text container">
+				<h1 class="ui inverted header">
+					Hi I'm Wren!
+				</h1>
+				<h2 id="changing text" class="ui inverted header">
+					Programmer
+				</h2>
+				<h2 id ="SubText" style="font-family: 'serpicoregular', Arial, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+				<br></br>
+				<h3 class="ui inverted header">
+					This is my resume website, enjoy your stay!
+				</h3>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				3D Modeling
-			  </div>
+		</div>
+		<div class="ui vertical stripe segment">
+			<div class="ui middle aligned stackable grid container">
+				<div class="row">
+					<div class="eight wide column">
+						<h3 class="ui header">Passionate About Technology</h3>
+						<p>I've spent the past two years of my life making VR and AR experiences, 3D Modeling and 3D Printing. I am extremely passionate towards the development and education of emerging technologies</p>
+					</div>
+					<div class="six wide right floated column">
+						<img src="images/index.jpg" class="ui large bordered rounded image">
+					</div>
+				</div>
+				<div class="row">
+					<div class="center aligned column">
+					</div>
+				</div>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				Programming
-			  </div>
+		</div>
+		<div class="ui vertical stripe quote segment">
+		<div class="ui equal width stackable internally celled grid">
+			<div class="center aligned row">
+				<div class="column">
+					<h3>Super Skills</h3>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Microsoft Office
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Adobe Creative Suite
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							3D Printing
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							3D Modeling
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Programming
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Web Development
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Computer Maintenance and Assembly
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Game Development
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							XR Development
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							Linux
+						</div>
+					</div>
+					<div class="ui list">
+						<div class="item">
+							<i class="bookmark icon"></i>
+							CAD
+						</div>
+					</div>
+				</div>
+				<div class="column">
+					<h3>Programming Languages</h3>
+					<div class="ui list">
+						<div class="item">
+							<i class="code icon"></i>
+							C#
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							Java
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							Javascript
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							Python
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							CSS
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							HTML
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							PHP
+						</div>
+						<div class="item">
+							<i class="code icon"></i>
+							SQL
+						</div>
+					</div>
+					<h3>Languages</h3>
+					<div class="ui big label" style="width: 200pt;">
+						<i class="language icon"></i>
+						English: Native Level
+					</div>
+					<br>
+					</br>
+					<div class="ui text shape">
+						<div class="Sides">
+							<div class="ui header side active">
+								<div class="ui big label" style="width: 200pt; margin: 0;">
+									<i class="language icon"></i>
+									日本語：～6月
+								</div>
+							</div>
+							<div class="ui header side">
+								<div class="ui big label" style="width: 200pt; margin: 0;">
+									<i class="language icon"></i>
+									Japanese: ~6 Months
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				Web Development
-			  </div>
+		</div>
+		<div class="ui vertical stripe segment">
+			<div class="ui text container">
+				<h3 class="ui header">My Work History</h3>
+				<p>
+				<div class="ui items">
+					<div class="item">
+						<div class="ui small image">
+							<img src="images/4-h.png">
+						</div>
+						<div class="content">
+							<div class="header">NDSU Center for 4-H Youth Development</div>
+							<div class="meta">
+								<span class="price">Instructor at CMS Afterschool STEM Program </span>
+								<span class="stay">Since January 2019</span>
+							</div>
+							<div class="description">
+								<p style="font-size: 10pt;">I began volunteering to help with the afterschool STEM Program at Cheney Middle School in December 2018. I was quickly reccomended to apply at NDSU's 4-H Chapter, and was hired shortly thereafter.</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui small image">
+							<img src="images/archenemy3.png">
+						</div>
+						<div class="content">
+							<div class="header">Archenemy Interactive</div>
+							<div class="meta">
+								<span class="price">Co-Founder </span>
+								<span class="stay">Since 2017</span>
+							</div>
+							<div class="description">
+								<p style="font-size: 10pt;">Starting a game studio, a dream sought after by almost anyone who is both a gamer and a programmer. Our dream is quickly becoming a reality. As of earlier this year we are officially Archenemy Interactive LLC, and have begun creating XR experiences for clients. Our next goal is to release a full game on Steam. Check out what we've done at <a href="https://archenemyinteractive.com/">this site!</a>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui small image">
+							<img src="images/ndsu.png">
+						</div>
+						<div class="content">
+							<div class="header">NDSU Department of Geosciences</div>
+							<div class="meta">
+								<span class="price">AR Sandbox Developer</span>
+								<span class="stay">Short-Term Contract December 2017</span>
+							</div>
+							<div class="description">
+								<p style="font-size: 10pt;">In late 2017 I was hired to creat a Graphical User Interface for NDSU's AR Sandboxes. The sandboxes featured a depth sensing camera and a projector, that would create topographic lines on the sand, allowing you to visualize maps. They also featured an amazing feature that simulated rainfall on topography</p>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="ui small image">
+							<img src="images/dshannon.jpg">
+						</div>
+						<div class="content">
+							<div class="header">D'Shannon Aviation</div>
+							<div class="meta">
+								<span class="price">CAD Operator, Web Developer, and Systems Administrator</span>
+								<span class="stay">May 2013-August 2016</span>
+							</div>
+							<div class="description">
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				</p>
+				<a class="ui large button">Read More</a>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				Computer Maintenance and Assembly
-			  </div>
+		</div>
+		<div class="ui vertical stripe quote segment">
+			<div class="ui equal width stackable internally celled grid">
+				<div class="center aligned row">
+					<div class="column">
+						<h3>Things I've Won!</h3>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								1st Place Winner Fargo Game Jam 2018
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								1st Place Winner Fargo Game Jam 2017
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								2nd Place Winner Digikey Collegiate Computing Competition 2017
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								1st Place Winner Fargo Public Safety Hackathon 2018
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								2nd Place Winner Fargo Public Safety Hackathon 2017
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								3rd Place Winner Fargo Startup Weekend 2019
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="Trophy icon"></i>
+								1st Place Winner NDSU's First Annual Byte-le Royale 2018
+							</div>
+						</div>
+					</div>
+					<div class="column">
+						<h3>Affiliations</h3>
+						<div class="ui list">
+							<div class="item">
+								<i class="users icon"></i>
+								Fargo Game Makers since 2017
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="users icon"></i>
+								NDSU Association for Computing Machinery 2016-2018
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="users icon"></i>
+								Bison Robotics 2017-2018
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="users icon"></i>
+								NDSU Pride Alliance 2016-2017
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="users icon"></i>
+								Experimental Aircraft Association 2013-2017
+							</div>
+						</div>
+						<div class="ui list">
+							<div class="item">
+								<i class="users icon"></i>
+								FIRST Robotics Competition 2012-2016
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				Game Development
-			  </div>
+			<div class="ui vertical stripe segment">
+				<div class="ui text container">
+					<h3 class="ui header">Education</h3>
+					<p>
+					<div class="ui items">
+						<div class="item">
+							<div class="ui small image">
+								<img src="images/book.png">
+							</div>
+							<div class="content">
+								<div class="header">Monticello Public High School</div>
+								<div class="meta">
+									<span class="price">Graduated in 2016</span>
+								</div>
+								<div class="description">
+									<p style="font-size: 10pt;">I grew up in Monticello, Minnesota. I learned a lot at high school and graduated in 2016</p>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="ui small image">
+								<img src="images/book.png">
+							</div>
+							<div class="content">
+								<div class="header">North Dakota State University</div>
+								<div class="meta">
+									<span class="price">Fall 2016-December 2017</span>
+								</div>
+								<div class="description">
+									<p style="font-size: 10pt;">I began attending NDSU in fall of 2016 originally in the Business program, I changed to the Computer Science program in the following semester. The experience taught me a lot but I was ultimately dissatisfied with the program. I withdrew from NDSU in 2017 to pursue entrepreneurship and my self-directed studies.</p>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="ui small image">
+								<img src="images/book.png">
+							</div>
+							<div class="content">
+								<div class="header">Self Taught</div>
+								<div class="meta">
+									<span class="price">Since Forever</span>
+								</div>
+								<div class="description">
+									<p style="font-size: 10pt;">The first line of code I wrote was in middle school, it wasn't for a class, at the time my school didn't have a STEM Program. I began teaching myself to program and it quickly found it's place within my life. I believe that the role of self-directed learning is becoming more important in today's age. The internet has given rise to many alternate forms of education, such as <a>Udemy</a>, <a>Khan Academy</a> and <a>Duolingo</a>.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					</p>
+				</div>
 			</div>
-			<div class="ui list">
-			  <div class="item">
-				<i class="bookmark icon"></i>
-				XR Development
-			  </div>
+			<div class="ui inverted vertical footer segment">
+				<div class="ui container">
+					<div class="ui stackable inverted divided equal height stackable grid">
+						<div class="three wide column">
+							<h4 class="ui inverted header">About</h4>
+							<div class="ui inverted link list">
+								<a href="#" class="item">Sitemap</a>
+								<a href="#" class="item">Contact Us</a>
+								<a href="#" class="item">Religious Ceremonies</a>
+								<a href="#" class="item">Gazebo Plans</a>
+							</div>
+						</div>
+						<div class="three wide column">
+							<h4 class="ui inverted header">Services</h4>
+							<div class="ui inverted link list">
+								<a href="#" class="item">Banana Pre-Order</a>
+								<a href="#" class="item">DNA FAQ</a>
+								<a href="#" class="item">How To Access</a>
+								<a href="#" class="item">Favorite X-Men</a>
+							</div>
+						</div>
+						<div class="seven wide column">
+							<h4 class="ui inverted header">Footer Header</h4>
+							<p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+						</div>
+					</div>
+				</div>
 			</div>
-        </div>
-        <div class="column">
-          <h3>Programming Languages</h3>
-          <div class="ui list">
-			  <div class="item">
-				<i class="code icon"></i>
-				C#
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				Java
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				Javascript
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				Python
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				CSS
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				HTML
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				PHP
-			  </div>
-			  <div class="item">
-				<i class="code icon"></i>
-				SQL
-			  </div>
-			</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="ui vertical stripe segment">
-    <div class="ui text container">
-      <h3 class="ui header">My Work History</h3>
-      <p><div class="ui items">
-  <div class="item">
-    <div class="ui small image">
-      <img src="images/4-h.png">
-    </div>
-    <div class="content">
-      <div class="header">NDSU Center for 4-H Youth Development</div>
-      <div class="meta">
-        <span class="price">Teacher at CMS Afterschool STEM Program </span>
-        <span class="stay">Since December 2018</span>
-      </div>
-      <div class="description">
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="ui small image">
-      <img src="images/archenemy3.png">
-    </div>
-    <div class="content">
-      <div class="header">Archenemy Interactive</div>
-      <div class="meta">
-        <span class="price">Co-Founder </span>
-        <span class="stay">Since 2017</span>
-      </div>
-      <div class="description">
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="ui small image">
-      <img src="images/ndsu.png">
-    </div>
-    <div class="content">
-      <div class="header">NDSU Department of Geosciences</div>
-      <div class="meta">
-        <span class="price">AR Sandbox Developer</span>
-        <span class="stay">Short-Term Contract December 2017</span>
-      </div>
-      <div class="description">
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <div class="item">
-    <div class="ui small image">
-      <img src="images/dshannon.jpg">
-    </div>
-    <div class="content">
-      <div class="header">D'Shannon Aviation</div>
-      <div class="meta">
-        <span class="price">CAD Operator, Web Developer, and Systems Administrator</span>
-		
-        <span class="stay">May 2013-August 2016</span>
-      </div>
-      <div class="description">
-        <p></p>
-      </div>
-    </div>
-  </div>
-</div></p>
-      <a class="ui large button">Read More</a>
-    </div>
-  </div>
-
-
-  <div class="ui inverted vertical footer segment">
-    <div class="ui container">
-      <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
-          <h4 class="ui inverted header">About</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Sitemap</a>
-            <a href="#" class="item">Contact Us</a>
-            <a href="#" class="item">Religious Ceremonies</a>
-            <a href="#" class="item">Gazebo Plans</a>
-          </div>
-        </div>
-        <div class="three wide column">
-          <h4 class="ui inverted header">Services</h4>
-          <div class="ui inverted link list">
-            <a href="#" class="item">Banana Pre-Order</a>
-            <a href="#" class="item">DNA FAQ</a>
-            <a href="#" class="item">How To Access</a>
-            <a href="#" class="item">Favorite X-Men</a>
-          </div>
-        </div>
-        <div class="seven wide column">
-          <h4 class="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-</body>
+		</div>
+	</body>
 </html>
